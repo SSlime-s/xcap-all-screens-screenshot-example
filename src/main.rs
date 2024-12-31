@@ -1,11 +1,9 @@
 use image::{DynamicImage, RgbaImage};
-use xcap::{image, Monitor};
+use xcap::image;
 
 struct MonitorInfo {
-    id: u32,
     xy: (i32, i32),
     wh: (u32, u32),
-    is_primary: bool,
     image: RgbaImage,
 }
 
@@ -16,10 +14,8 @@ fn main() {
         .map(|monitor| {
             let image = monitor.capture_image().unwrap();
             MonitorInfo {
-                id: monitor.id(),
                 xy: (monitor.x(), monitor.y()),
                 wh: (monitor.width(), monitor.height()),
-                is_primary: monitor.is_primary(),
                 image,
             }
         })
