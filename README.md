@@ -1,4 +1,4 @@
-# xcap-screenshot-example
+# xcap-all-screens-screenshot-example
 
 Demonstrates capturing screenshots of all screens using the `xcap` crate in Rust.
 
