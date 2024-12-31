@@ -29,6 +29,9 @@ struct VirtualImageSize {
     wh: (u32, u32),
 }
 
+/**
+ * Calculate the size that encompasses all the monitors.
+ */
 fn get_whole_size(monitor_infos: &[MonitorInfo]) -> VirtualImageSize {
     let x = monitor_infos.iter().map(|info| info.xy.0).min().unwrap();
     let y = monitor_infos.iter().map(|info| info.xy.1).min().unwrap();
