@@ -13,6 +13,11 @@ fn main() {
         .into_iter()
         .map(|monitor| {
             let image = monitor.capture_image().unwrap();
+            println!("Monitor: {:?}", monitor);
+            println!(
+                "xy, wh: {:?}",
+                (monitor.x(), monitor.y(), monitor.width(), monitor.height())
+            );
             MonitorInfo {
                 xy: (monitor.x(), monitor.y()),
                 wh: (monitor.width(), monitor.height()),
@@ -20,6 +25,7 @@ fn main() {
             }
         })
         .collect::<Vec<_>>();
+
     let monitor_infos = monitor_infos.iter().map(process_image).collect::<Vec<_>>();
     let merged_image = merge_images(&monitor_infos);
     merged_image.save("screenshot.png").unwrap();
