@@ -68,7 +68,7 @@ fn merge_images(monitor_infos: &[MonitorInfo]) -> DynamicImage {
 }
 
 /**
- * if MacOS, screenshot based on LogicalSize. Therefore, image resize to PhysicalSize.
+ * if MacOS, screenshot based on PhysicalSize. Therefore, image resize to LogicalSize.
  */
 fn process_image(monitor_info: &MonitorInfo) -> MonitorInfo {
     let new_image = image::imageops::resize(
