@@ -4,9 +4,9 @@ Demonstrates capturing screenshots of all screens using the `xcap` crate in Rust
 
 Run with `cargo run`. However, a release build is **recommended** as debug builds are significantly slower:
 
-``bash
+```bash
 cargo run --release
-``
+```
 
 Captures screenshots of all connected screens and saves them to the current directory.
 
