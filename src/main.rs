@@ -20,6 +20,7 @@ fn main() {
             }
         })
         .collect::<Vec<_>>();
+    let monitor_infos = monitor_infos.iter().map(process_image).collect::<Vec<_>>();
     let merged_image = merge_images(&monitor_infos);
     merged_image.save("screenshot.png").unwrap();
 }
@@ -64,4 +65,22 @@ fn merge_images(monitor_infos: &[MonitorInfo]) -> DynamicImage {
         );
     }
     DynamicImage::ImageRgba8(image)
+}
+
+/**
+ * if MacOS, screenshot based on LogicalSize. Therefore, image resize to PhysicalSize.
+ */
+fn process_image(monitor_info: &MonitorInfo) -> MonitorInfo {
+    let new_image = image::imageops::resize(
+        &monitor_info.image,
+        monitor_info.wh.0,
+        monitor_info.wh.1,
+        image::imageops::FilterType::Nearest,
+    );
+
+    MonitorInfo {
+        xy: monitor_info.xy,
+        wh: monitor_info.wh,
+        image: new_image,
+    }
 }
